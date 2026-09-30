@@ -30,6 +30,8 @@ import 'framed-blur/styles.css';                     // zero-JS
 
 > Ships a single `ProgressiveBlur` API. The overlay is `pointer-events: none` and `aria-hidden`, so it never steals input or gets announced.
 
+**[▶ Live demo / playground →](https://blogs.idevlab.dev/framed-blur/)**
+
 ## How it works
 
 A single `backdrop-filter: blur()` is uniform. To get a *gradient of blur* you stack several layers, each with a bigger radius, and limit how far it reaches with a `mask-image` linear-gradient:
