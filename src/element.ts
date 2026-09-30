@@ -32,14 +32,14 @@ function numberAttribute(element: Element, name: string): number | undefined {
 }
 
 /**
- * `<progressive-blur>` custom element.
+ * `<framed-blur>` custom element.
  *
  * ```html
- * <progressive-blur height="96" levels="4" blur="4" tint="#fff" position="fixed"></progressive-blur>
+ * <framed-blur height="96" levels="4" blur="4" tint="#fff" position="fixed"></framed-blur>
  * ```
  *
  * Attributes mirror `ProgressiveBlurOptions`; `position` and `z-index` control
- * placement. Importing `progressive-blur/element` auto-registers the tag.
+ * placement. Importing `framed-blur/element` auto-registers the tag.
  */
 export class ProgressiveBlurElement extends HTMLElement {
   static get observedAttributes(): readonly string[] {
@@ -100,13 +100,13 @@ export class ProgressiveBlurElement extends HTMLElement {
     for (const [property, value] of containerDeclarations(model, options)) {
       this.style.setProperty(property, value);
     }
-    this.setAttribute('data-progressive-blur', '');
+    this.setAttribute('data-framed-blur', '');
     this.setAttribute('aria-hidden', 'true');
     this.replaceChildren();
 
     for (const layer of layers) {
       const node = document.createElement('div');
-      node.setAttribute('data-progressive-blur-layer', layer.kind);
+      node.setAttribute('data-framed-blur-layer', layer.kind);
       for (const [property, value] of layerDeclarations(layer)) {
         node.style.setProperty(property, value);
       }
@@ -115,8 +115,8 @@ export class ProgressiveBlurElement extends HTMLElement {
   }
 }
 
-/** Registers the `<progressive-blur>` element (idempotent). */
-export function defineProgressiveBlur(tag = 'progressive-blur'): void {
+/** Registers the `<framed-blur>` element (idempotent). */
+export function defineProgressiveBlur(tag = 'framed-blur'): void {
   if (typeof customElements === 'undefined' || customElements.get(tag)) return;
   customElements.define(tag, ProgressiveBlurElement);
 }
@@ -125,6 +125,6 @@ defineProgressiveBlur();
 
 declare global {
   interface HTMLElementTagNameMap {
-    'progressive-blur': ProgressiveBlurElement;
+    'framed-blur': ProgressiveBlurElement;
   }
 }

@@ -7,9 +7,9 @@ export default defineConfig({
   root: resolveFrom('.'),
   resolve: {
     alias: {
-      'progressive-blur/vue': resolveFrom('../src/vue.ts'),
-      'progressive-blur/core': resolveFrom('../src/core.ts'),
-      'progressive-blur': resolveFrom('../src/index.ts'),
+      'framed-blur/vue': resolveFrom('../src/vue.ts'),
+      'framed-blur/core': resolveFrom('../src/core.ts'),
+      'framed-blur': resolveFrom('../src/index.ts'),
     },
   },
   server: { port: 5179, open: false },

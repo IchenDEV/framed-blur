@@ -4,13 +4,13 @@ import { describe, expect, it } from 'vitest';
 import { ProgressiveBlur } from './react';
 
 function queryLayers(container: HTMLElement): HTMLElement[] {
-  return Array.from(container.querySelectorAll<HTMLElement>('[data-progressive-blur-layer]'));
+  return Array.from(container.querySelectorAll<HTMLElement>('[data-framed-blur-layer]'));
 }
 
 describe('<ProgressiveBlur />', () => {
   it('renders four blur layers plus a tint layer by default', () => {
     const { container } = render(<ProgressiveBlur />);
-    const root = container.querySelector<HTMLElement>('[data-progressive-blur]')!;
+    const root = container.querySelector<HTMLElement>('[data-framed-blur]')!;
 
     expect(root).toHaveAttribute('aria-hidden', 'true');
     expect(queryLayers(container)).toHaveLength(5);
@@ -29,7 +29,7 @@ describe('<ProgressiveBlur />', () => {
     const { container } = render(
       <ProgressiveBlur direction="bottom" height={48} zIndex={42} opacity={0.5} />,
     );
-    const root = container.querySelector<HTMLElement>('[data-progressive-blur]')!;
+    const root = container.querySelector<HTMLElement>('[data-framed-blur]')!;
 
     expect(root.style.height).toBe('48px');
     expect(root.style.bottom).toBe('0px');
@@ -48,7 +48,7 @@ describe('<ProgressiveBlur />', () => {
     const { container } = render(
       <ProgressiveBlur ref={ref} className="overlay" style={{ borderRadius: 12 }} />,
     );
-    const root = container.querySelector<HTMLElement>('[data-progressive-blur]')!;
+    const root = container.querySelector<HTMLElement>('[data-framed-blur]')!;
 
     expect(ref.current).toBe(root);
     expect(root).toHaveClass('overlay');
@@ -57,7 +57,7 @@ describe('<ProgressiveBlur />', () => {
 
   it('does not leak blur options to the DOM element', () => {
     const { container } = render(<ProgressiveBlur levels={6} blur={8} />);
-    const root = container.querySelector<HTMLElement>('[data-progressive-blur]')!;
+    const root = container.querySelector<HTMLElement>('[data-framed-blur]')!;
     expect(root.getAttribute('levels')).toBeNull();
     expect(root.getAttribute('blur')).toBeNull();
   });

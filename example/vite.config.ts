@@ -9,11 +9,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      'progressive-blur/core': resolveFrom('../src/core.ts'),
-      'progressive-blur/react': resolveFrom('../src/react.tsx'),
-      'progressive-blur/element': resolveFrom('../src/element.ts'),
-      'progressive-blur/styles.css': resolveFrom('../styles.css'),
-      'progressive-blur': resolveFrom('../src/index.ts'),
+      // Most specific first — Vite matches aliases in insertion order.
+      'framed-blur/core': resolveFrom('../src/core.ts'),
+      'framed-blur/react': resolveFrom('../src/react.tsx'),
+      'framed-blur/element': resolveFrom('../src/element.ts'),
+      'framed-blur/styles.css': resolveFrom('../styles.css'),
+      'framed-blur': resolveFrom('../src/index.ts'),
     },
   },
   server: { port: 5178, open: false },

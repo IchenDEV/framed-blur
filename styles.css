@@ -1,5 +1,5 @@
 /*
- * progressive-blur — zero-JS drop-in.
+ * framed-blur — zero-JS drop-in.
  *
  * Markup: a `.pb` container with four empty <div>s followed by a final <div>
  * (the tint layer).

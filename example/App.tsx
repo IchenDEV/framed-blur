@@ -1,8 +1,8 @@
 import { createElement, useMemo, useState } from 'react';
-import { ProgressiveBlur, type ProgressiveBlurProps } from 'progressive-blur/react';
-import { defineProgressiveBlur } from 'progressive-blur/element';
+import { ProgressiveBlur, type ProgressiveBlurProps } from 'framed-blur/react';
+import { defineProgressiveBlur } from 'framed-blur/element';
 
-// Register the <progressive-blur> custom element (also auto-registers on import).
+// Register the <framed-blur> custom element (also auto-registers on import).
 defineProgressiveBlur();
 
 const ROWS = Array.from({ length: 40 }, (_, i) => ({
@@ -57,7 +57,7 @@ export function App() {
   return (
     <main style={{ maxWidth: 1280, margin: '0 auto', padding: '40px 24px 96px', display: 'grid', gap: 24 }}>
       <header style={{ display: 'grid', gap: 8 }}>
-        <h1 style={{ margin: 0, fontSize: 28 }}>progressive-blur</h1>
+        <h1 style={{ margin: 0, fontSize: 28 }}>framed-blur</h1>
         <p style={{ margin: 0, opacity: 0.65, maxWidth: 720 }}>
           A stack of <code>backdrop-filter</code> layers masked by gradients — the technique behind
           frosted sticky headers. Drag the sliders; the overlay re-renders live.
@@ -195,7 +195,7 @@ export function App() {
                 fontSize: 12,
               }}
             >
-              {createElement('progressive-blur' as unknown as React.ElementType, {
+              {createElement('framed-blur' as unknown as React.ElementType, {
                 height: options.height,
                 levels: options.levels,
                 blur: options.blur,

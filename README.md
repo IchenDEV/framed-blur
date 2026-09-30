@@ -1,17 +1,34 @@
-# progressive-blur
+# framed-blur
 
-A production-grade **progressive blur**: stack of `backdrop-filter` layers masked by gradients, capped with a surface tint. It is the technique behind frosted sticky headers (ChatGPT, Figma, Linear, …) — the content under the bar blurs *more* the closer it gets to the edge.
+<p>
+  <a href="https://github.com/IchenDEV/framed-blur/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/IchenDEV/framed-blur/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://www.npmjs.com/package/framed-blur"><img alt="npm" src="https://img.shields.io/npm/v/framed-blur.svg"></a>
+  <img alt="bundle size" src="https://img.shields.io/badge/min%2Bgzip-~2.5%20kB-blue">
+  <img alt="license" src="https://img.shields.io/npm/l/framed-blur.svg">
+  <img alt="types" src="https://img.shields.io/badge/types-included-blue">
+</p>
+
+**Progressive blur for the web** — a stack of `backdrop-filter` layers masked by gradients, capped with a surface tint. It is the technique behind frosted sticky headers (ChatGPT, Figma, Linear, …): the content under the bar blurs *more* the closer it gets to the edge.
 
 - **Framework-agnostic core** — pure math, zero dependencies, SSR-safe.
-- **React**, **Vue 3**, **vanilla DOM** and a **`<progressive-blur>` Web Component** — same options everywhere.
+- **React**, **Vue 3**, **vanilla DOM** and a **`<framed-blur>` Web Component** — same options everywhere.
 - **Zero-JS CSS drop-in** (`styles.css`) for anyone who just wants the effect.
 - Accessible by default: respects `prefers-reduced-transparency` and `forced-colors`.
 - Ships ESM + CJS + types (verified with `publint` and `@arethetypeswrong/cli`).
 
+```bash
+npm i framed-blur
+# pnpm add framed-blur  ·  yarn add framed-blur  ·  bun add framed-blur
 ```
-npm i progressive-blur
-# or: pnpm add progressive-blur
+
+```ts
+import { ProgressiveBlur } from 'framed-blur/react'; // React
+import { ProgressiveBlur } from 'framed-blur/vue';   // Vue 3
+import 'framed-blur/element';                        // <framed-blur>
+import 'framed-blur/styles.css';                     // zero-JS
 ```
+
+> Ships a single `ProgressiveBlur` API. The overlay is `pointer-events: none` and `aria-hidden`, so it never steals input or gets announced.
 
 ## How it works
 
@@ -32,7 +49,7 @@ The container is `pointer-events: none` and `aria-hidden`, so it never intercept
 ## React
 
 ```tsx
-import { ProgressiveBlur } from 'progressive-blur/react';
+import { ProgressiveBlur } from 'framed-blur/react';
 
 export function Inbox() {
   return (
@@ -54,7 +71,7 @@ Drive it from scroll if you like — just animate `opacity`:
 
 ```vue
 <script setup lang="ts">
-import { ProgressiveBlur } from 'progressive-blur/vue';
+import { ProgressiveBlur } from 'framed-blur/vue';
 </script>
 
 <template>
@@ -70,7 +87,7 @@ Props mirror the options below (kebab-case in templates). `useReducedTransparenc
 ## Vanilla
 
 ```ts
-import { createProgressiveBlur } from 'progressive-blur';
+import { createProgressiveBlur } from 'framed-blur';
 
 const blur = createProgressiveBlur({ direction: 'bottom', height: 72, tint: '#0d0d0d' });
 scrollArea.append(blur.element);
@@ -84,12 +101,12 @@ blur.destroy();           // clean up + remove listeners
 ## Web Component
 
 ```js
-import 'progressive-blur/element'; // registers <progressive-blur>
+import 'framed-blur/element'; // registers <framed-blur>
 ```
 
 ```html
 <div style="position: relative; overflow: auto; height: 420px">
-  <progressive-blur height="96" levels="4" blur="4" tint="#fff" direction="top"></progressive-blur>
+  <framed-blur height="96" levels="4" blur="4" tint="#fff" direction="top"></framed-blur>
   <!-- content -->
 </div>
 ```
@@ -99,7 +116,7 @@ Attributes mirror the options below; `position` and `z-index` control placement.
 ## Pure CSS
 
 ```html
-<link rel="stylesheet" href="progressive-blur/styles.css" />
+<link rel="stylesheet" href="framed-blur/styles.css" />
 <div class="pb" data-pb-edge="top">
   <div></div><div></div><div></div><div></div><div></div>
 </div>
@@ -127,12 +144,12 @@ Attributes mirror the options below; `position` and `z-index` control placement.
 
 ### Exports
 
-- `progressive-blur` — `computeProgressiveBlur`, `renderProgressiveBlur`, `createProgressiveBlur`, style/declaration helpers.
-- `progressive-blur/core` — pure functions only (`computeProgressiveBlur`, `withAlpha`, `layerDeclarations`, `declarationsToStyle`, `toStyles`, …).
-- `progressive-blur/react` — `<ProgressiveBlur>`, `useReducedTransparency`.
-- `progressive-blur/vue` — `<ProgressiveBlur>` (Vue 3), `useReducedTransparency`.
-- `progressive-blur/element` — `<progressive-blur>` custom element + `defineProgressiveBlur`.
-- `progressive-blur/styles.css` — zero-JS drop-in.
+- `framed-blur` — `computeProgressiveBlur`, `renderProgressiveBlur`, `createProgressiveBlur`, style/declaration helpers.
+- `framed-blur/core` — pure functions only (`computeProgressiveBlur`, `withAlpha`, `layerDeclarations`, `declarationsToStyle`, `toStyles`, …).
+- `framed-blur/react` — `<ProgressiveBlur>`, `useReducedTransparency`.
+- `framed-blur/vue` — `<ProgressiveBlur>` (Vue 3), `useReducedTransparency`.
+- `framed-blur/element` — `<framed-blur>` custom element + `defineProgressiveBlur`.
+- `framed-blur/styles.css` — zero-JS drop-in.
 
 ### Key functions
 

@@ -1,5 +1,5 @@
 import { createApp, defineComponent, h, ref } from 'vue';
-import { ProgressiveBlur } from 'progressive-blur/vue';
+import { ProgressiveBlur } from 'framed-blur/vue';
 
 const TITLES = [
   'Progressive blur is a stack of backdrop-filter layers',
@@ -18,7 +18,7 @@ const App = defineComponent({
 
     return () =>
       h('main', { style: 'max-width:900px;margin:0 auto;padding:40px 24px;display:grid;gap:20px' }, [
-        h('h1', { style: 'margin:0;font-size:26px' }, 'progressive-blur · Vue'),
+        h('h1', { style: 'margin:0;font-size:26px' }, 'framed-blur · Vue'),
         h('div', { style: 'display:flex;gap:16px;align-items:center;font-size:13px' }, [
           h('label', { style: 'display:flex;gap:8px;align-items:center' }, [
             `height ${height.value}px`,

@@ -31,7 +31,7 @@ function applyDeclarations(
 }
 
 /**
- * Renders the progressive-blur layers into an existing element.
+ * Renders the framed-blur layers into an existing element.
  *
  * The element becomes the container: its position/height/z-index are set, and
  * one child `<div>` is created per blur (and tint) layer. Existing children are
@@ -48,13 +48,13 @@ export function renderProgressiveBlur(
   );
 
   applyDeclarations(container, containerDeclarations(model, options));
-  container.setAttribute('data-progressive-blur', '');
+  container.setAttribute('data-framed-blur', '');
   container.setAttribute('aria-hidden', 'true');
   container.replaceChildren();
 
   for (const layer of layers) {
     const node = container.ownerDocument.createElement('div');
-    node.setAttribute('data-progressive-blur-layer', layer.kind);
+    node.setAttribute('data-framed-blur-layer', layer.kind);
     applyDeclarations(node, layerDeclarations(layer));
     container.appendChild(node);
   }
@@ -72,7 +72,7 @@ export interface ProgressiveBlurHandle {
 }
 
 /**
- * Imperatively creates a progressive-blur overlay.
+ * Imperatively creates a framed-blur overlay.
  *
  * ```ts
  * const blur = createProgressiveBlur({ height: 96, levels: 4, blur: 4 });

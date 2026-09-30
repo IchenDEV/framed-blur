@@ -1,22 +1,44 @@
 {
-  "name": "progressive-blur",
+  "name": "framed-blur",
   "version": "0.1.0",
-  "description": "Production-grade progressive blur for the web: a stack of backdrop-filter layers masked by gradients, plus a surface tint. Framework-agnostic core, React component and a Web Component.",
+  "description": "Progressive blur for the web: a stack of backdrop-filter layers masked by gradients, plus a surface tint. Framework-agnostic core with React, Vue 3, vanilla DOM and a Web Component.",
   "keywords": [
     "progressive-blur",
+    "framed-blur",
     "progressive",
     "blur",
     "backdrop-filter",
+    "backdrop",
     "mask",
+    "mask-image",
+    "frosted",
+    "glass",
     "sticky",
     "header",
+    "scroll",
     "gradient",
     "react",
+    "vue",
     "web-component",
-    "css"
+    "custom-element",
+    "css",
+    "vanilla"
   ],
+  "author": "IchenDEV",
   "license": "MIT",
   "type": "module",
+  "homepage": "https://github.com/IchenDEV/framed-blur#readme",
+  "bugs": {
+    "url": "https://github.com/IchenDEV/framed-blur/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IchenDEV/framed-blur.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "sideEffects": [
     "*.css",
     "./dist/element.js",
@@ -117,7 +139,8 @@
     "lint:pkg": "publint",
     "check:exports": "attw --pack . --exclude-entrypoints ./styles.css",
     "verify": "pnpm typecheck && pnpm test && pnpm build && pnpm lint:pkg && pnpm check:exports",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm verify",
+    "release": "pnpm build && npm publish"
   },
   "peerDependencies": {
     "react": ">=18",

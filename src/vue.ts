@@ -50,7 +50,7 @@ export function useReducedTransparency() {
  *
  * ```vue
  * <script setup lang="ts">
- * import { ProgressiveBlur } from 'progressive-blur/vue';
+ * import { ProgressiveBlur } from 'framed-blur/vue';
  * </script>
  *
  * <template>
@@ -113,14 +113,14 @@ export const ProgressiveBlur = defineComponent({
         {
           ...attrs,
           'aria-hidden': 'true',
-          'data-progressive-blur': '',
-          'data-progressive-blur-reduced': reduced.value ? '' : undefined,
+          'data-framed-blur': '',
+          'data-framed-blur-reduced': reduced.value ? '' : undefined,
           style: [containerStyle.value, attrs.style] as StyleValue,
         },
         state.value.layers.map((layer, index) =>
           h('div', {
             key: index,
-            'data-progressive-blur-layer': layer.kind,
+            'data-framed-blur-layer': layer.kind,
             style: declarationsToStyle(layerDeclarations(layer)),
           }),
         ),

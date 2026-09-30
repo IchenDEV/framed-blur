@@ -1,5 +1,5 @@
 /**
- * progressive-blur — framework-agnostic core.
+ * framed-blur — framework-agnostic core.
  *
  * Pure, DOM-free math that turns a handful of options into the declarative
  * description of a progressive blur: a stack of `backdrop-filter` layers whose
@@ -167,7 +167,7 @@ export function computeTintLayer(options: ProgressiveBlurOptions = {}): Progress
 }
 
 /**
- * Computes the full progressive-blur model.
+ * Computes the full framed-blur model.
  *
  * The ramp is fully parametric. For `N` layers:
  *   - layer `i` (0 = weakest) has `blur = maxBlur / 2^(N-1-i)`

@@ -42,7 +42,7 @@ export function useReducedTransparency(): boolean {
 }
 
 /**
- * The progressive-blur overlay as a React component.
+ * The framed-blur overlay as a React component.
  *
  * Place it inside a positioned surface (a `position: relative` scroll area),
  * anchored to the edge you are fading from.
@@ -92,15 +92,15 @@ export const ProgressiveBlur = React.forwardRef<HTMLElement, ProgressiveBlurProp
       {
         ref,
         className,
-        'data-progressive-blur': '',
-        'data-progressive-blur-reduced': reduced ? '' : undefined,
+        'data-framed-blur': '',
+        'data-framed-blur-reduced': reduced ? '' : undefined,
         'aria-hidden': 'true',
         style: { ...containerStyle, ...style },
       },
       layers.map((layer, index) =>
         React.createElement('div', {
           key: index,
-          'data-progressive-blur-layer': layer.kind,
+          'data-framed-blur-layer': layer.kind,
           style: declarationsToStyle(layerDeclarations(layer)),
         }),
       ),

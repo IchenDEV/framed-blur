@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { ProgressiveBlur } from './vue';
 
 function layers(wrapper: ReturnType<typeof mount>): Element[] {
-  return Array.from(wrapper.element.querySelectorAll('[data-progressive-blur-layer]'));
+  return Array.from(wrapper.element.querySelectorAll('[data-framed-blur-layer]'));
 }
 
 describe('<ProgressiveBlur /> (Vue)', () => {
