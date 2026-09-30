@@ -1,0 +1,162 @@
+{
+  "name": "progressive-blur",
+  "version": "0.1.0",
+  "description": "Production-grade progressive blur for the web: a stack of backdrop-filter layers masked by gradients, plus a surface tint. Framework-agnostic core, React component and a Web Component.",
+  "keywords": [
+    "progressive-blur",
+    "progressive",
+    "blur",
+    "backdrop-filter",
+    "mask",
+    "sticky",
+    "header",
+    "gradient",
+    "react",
+    "web-component",
+    "css"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "*.css",
+    "./dist/element.js",
+    "./dist/element.cjs",
+    "./src/element.ts"
+  ],
+  "files": [
+    "dist",
+    "styles.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./core": {
+      "import": {
+        "types": "./dist/core.d.ts",
+        "default": "./dist/core.js"
+      },
+      "require": {
+        "types": "./dist/core.d.cts",
+        "default": "./dist/core.cjs"
+      }
+    },
+    "./vanilla": {
+      "import": {
+        "types": "./dist/vanilla.d.ts",
+        "default": "./dist/vanilla.js"
+      },
+      "require": {
+        "types": "./dist/vanilla.d.cts",
+        "default": "./dist/vanilla.cjs"
+      }
+    },
+    "./react": {
+      "import": {
+        "types": "./dist/react.d.ts",
+        "default": "./dist/react.js"
+      },
+      "require": {
+        "types": "./dist/react.d.cts",
+        "default": "./dist/react.cjs"
+      }
+    },
+    "./vue": {
+      "import": {
+        "types": "./dist/vue.d.ts",
+        "default": "./dist/vue.js"
+      },
+      "require": {
+        "types": "./dist/vue.d.cts",
+        "default": "./dist/vue.cjs"
+      }
+    },
+    "./element": {
+      "import": {
+        "types": "./dist/element.d.ts",
+        "default": "./dist/element.js"
+      },
+      "require": {
+        "types": "./dist/element.d.cts",
+        "default": "./dist/element.cjs"
+      }
+    },
+    "./styles.css": "./styles.css",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "core": ["./dist/core.d.ts"],
+      "vanilla": ["./dist/vanilla.d.ts"],
+      "react": ["./dist/react.d.ts"],
+      "vue": ["./dist/vue.d.ts"],
+      "element": ["./dist/element.d.ts"],
+      "*": ["./dist/index.d.ts"]
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "vite --config example/vite.config.ts",
+    "dev:vue": "vite --config example-vue/vite.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "lint:pkg": "publint",
+    "check:exports": "attw --pack . --exclude-entrypoints ./styles.css",
+    "verify": "pnpm typecheck && pnpm test && pnpm build && pnpm lint:pkg && pnpm check:exports",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "vue": ">=3.3"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@vitest/coverage-v8": "^5.0.2",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^30.1.1",
+    "publint": "^0.3.24",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2",
+    "vue": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

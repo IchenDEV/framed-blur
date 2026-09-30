@@ -1,0 +1,98 @@
+/*
+ * progressive-blur — zero-JS drop-in.
+ *
+ * Markup: a `.pb` container with four empty <div>s followed by a final <div>
+ * (the tint layer).
+ *
+ *   <div class="pb" data-pb-edge="top">
+ *     <div></div><div></div><div></div><div></div><div></div>
+ *   </div>
+ *
+ * Configure with the custom properties below. If you use the React/vanilla
+ * renderers you do not need this file.
+ */
+.pb {
+  --pb-height: 96px;
+  --pb-blur: 4px;
+  --pb-tint: #fff;
+  --pb-tint-opacity: 60%;
+  --pb-gradient: to bottom;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--pb-height);
+  pointer-events: none;
+  z-index: var(--pb-z-index, 20);
+}
+
+.pb[data-pb-edge='bottom'] {
+  top: auto;
+  bottom: 0;
+  --pb-gradient: to top;
+}
+
+.pb[data-pb-fixed] {
+  position: fixed;
+}
+
+.pb > * {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Layer 1 — blur/8, covers the most height. */
+.pb > :nth-child(1) {
+  -webkit-backdrop-filter: blur(calc(var(--pb-blur) / 8));
+  backdrop-filter: blur(calc(var(--pb-blur) / 8));
+  -webkit-mask-image: linear-gradient(var(--pb-gradient), #000 75%, #0000);
+  mask-image: linear-gradient(var(--pb-gradient), #000 75%, #0000);
+}
+
+/* Layer 2 — blur/4 */
+.pb > :nth-child(2) {
+  -webkit-backdrop-filter: blur(calc(var(--pb-blur) / 4));
+  backdrop-filter: blur(calc(var(--pb-blur) / 4));
+  -webkit-mask-image: linear-gradient(var(--pb-gradient), #000 62.5%, #0000 87.5%);
+  mask-image: linear-gradient(var(--pb-gradient), #000 62.5%, #0000 87.5%);
+}
+
+/* Layer 3 — blur/2 */
+.pb > :nth-child(3) {
+  -webkit-backdrop-filter: blur(calc(var(--pb-blur) / 2));
+  backdrop-filter: blur(calc(var(--pb-blur) / 2));
+  -webkit-mask-image: linear-gradient(var(--pb-gradient), #000 50%, #0000 75%);
+  mask-image: linear-gradient(var(--pb-gradient), #000 50%, #0000 75%);
+}
+
+/* Layer 4 — full blur, strongest, shortest reach. */
+.pb > :nth-child(4) {
+  -webkit-backdrop-filter: blur(var(--pb-blur));
+  backdrop-filter: blur(var(--pb-blur));
+  -webkit-mask-image: linear-gradient(var(--pb-gradient), #000 37.5%, #0000 62.5%);
+  mask-image: linear-gradient(var(--pb-gradient), #000 37.5%, #0000 62.5%);
+}
+
+/* Tint — blends the blurred band into the surface. */
+.pb > :last-child {
+  background: linear-gradient(
+    var(--pb-gradient),
+    color-mix(in srgb, var(--pb-tint) var(--pb-tint-opacity), transparent),
+    transparent
+  );
+}
+
+.pb[data-pb-tint='none'] > :last-child {
+  display: none;
+}
+
+@media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+  .pb > :not(:last-child) {
+    display: none;
+  }
+  .pb > :last-child {
+    background: var(--pb-tint);
+  }
+}
