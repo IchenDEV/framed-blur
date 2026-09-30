@@ -1,6 +1,10 @@
 node_modules
 dist
+demo/dist
+example/dist
+example-vue/dist
 coverage
 *.log
 .DS_Store
 .vite
+

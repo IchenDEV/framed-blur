@@ -132,6 +132,8 @@
     "build": "tsup",
     "dev": "vite --config example/vite.config.ts",
     "dev:vue": "vite --config example-vue/vite.config.ts",
+    "dev:demo": "vite --config demo/vite.config.ts",
+    "build:demo": "vite build --config demo/vite.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
