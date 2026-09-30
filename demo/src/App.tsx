@@ -162,6 +162,7 @@ function DemoSurface({
     direction: options.direction,
     tint: options.tint,
     tintOpacity: options.tintOpacity,
+    // Only fade the overlay in once the content has scrolled under the bar.
     opacity: scrolled ? 1 : 0,
     style: { transition: 'opacity .18s ease' },
   };
@@ -169,9 +170,9 @@ function DemoSurface({
   return (
     <div ref={scrollRef} className={`demo-scroll${compact ? ' compact' : ''}`}>
       <ProgressiveBlur {...blurProps} />
-      <div className="sticky-bar">
+      <div className="sticky-bar" data-scrolled={scrolled}>
         <span>{headerLabel}</span>
-        <span className="bar-meta">{scrolled ? 'scrolled' : 'top'}</span>
+        <span className="bar-meta">{scrolled ? 'scrolled · blur on' : 'top · blur off'}</span>
       </div>
       {children ?? (
         <ul className="rows">

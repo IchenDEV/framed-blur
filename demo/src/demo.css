@@ -188,9 +188,17 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 22px;
+  /* Full-bleed opaque band pinned to the top; the blur overlay sits behind it.
+     No vertical padding above it, so content never leaks into the top gap. */
+  padding: 0 22px;
+  height: 52px;
   font-weight: 650;
   font-size: 15px;
+  background: var(--surface-2);
+  border-bottom: 1px solid transparent;
+}
+.sticky-bar[data-scrolled='true'] {
+  border-bottom-color: var(--border);
 }
 .sticky-bar .bar-meta {
   font-size: 12px;
@@ -200,7 +208,8 @@ code {
 
 .rows {
   margin: 0;
-  padding: 10px 22px 22px;
+  /* No top padding: the first row starts right at the sticky bar. */
+  padding: 14px 22px 22px;
   list-style: none;
   display: grid;
   gap: 14px;
